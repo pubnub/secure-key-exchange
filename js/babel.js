@@ -172,10 +172,12 @@ function dogechat(username) {
         },
         deleteMessage: function (userName, msgID) {
             // Delete a message from 'messages' object by the msgID and userName of the conversation.
-            for (var i = 0; i < messages[userName].length; i++) {
-                if (messages[userName][i].msgID === msgID) {
-                    messages[userName].splice(i, 1);
-                    break;
+            if (userName === msgID) {
+                for (var i = 0; i < messages[userName].length; i++) {
+                    if (messages[userName][i].msgID === msgID) {
+                        messages[userName].splice(i, 1);
+                        break;
+                    }
                 }
             }
         },

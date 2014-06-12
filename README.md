@@ -1,4 +1,4 @@
-# DogeChat
+# Babel
 
 ## Asymmetric-Key Exchange and Self-Destructing Messages with PubNub
 
@@ -11,11 +11,11 @@ Check out <http://temp.com> for a live demo.
 ### Walkthrough
 
 #### 1. First Steps
-DogeChat is built on [PubNub](http://www.pubnub.com/), so first, let's include the PubNub JavaScript SDK.
+babel is built on [PubNub](http://www.pubnub.com/), so first, let's include the PubNub JavaScript SDK.
 
 	<script src=http://cdn.pubnub.com/pubnub.min.js ></script>
 	
-The DogeChat user interface also uses [jQuery](http://jquery.com/), [Bootstrap](http://getbootstrap.com/), [CSShake](http://elrumordelaluz.github.io/csshake/) and [Cryptico](http://wwwtyro.github.io/cryptico/). However, if you only want to do Public-Key exchange, you only need PubNub.
+The babel user interface also uses [jQuery](http://jquery.com/), [Bootstrap](http://getbootstrap.com/), [CSShake](http://elrumordelaluz.github.io/csshake/) and [Cryptico](http://wwwtyro.github.io/cryptico/). However, if you only want to do Public-Key exchange, you only need PubNub.
 
 #### 2. `dogekeyexchange.js`
 
@@ -52,12 +52,12 @@ Now that we've generated a Public Key and our PubNub client is prepared, we can 
 Let's subscribe to a PubNub channel.
 
 	pubnub.subscribe({
-		channel : dogechat,
+		channel : babel,
 		callback : function(m) {console.log(m);},
 		state : publicKey
 	});
 	
-Our channel name in this case is `dogechat`. When we receive a message we simply print it out. Also, our `state` has been set to our `publicKey`.
+Our channel name in this case is `babel`. When we receive a message we simply print it out. Also, our `state` has been set to our `publicKey`.
 <!--`messageHandler` and `presenceHandler` are functions that we can modify later to change what happens on message and presence changes. For now, it suffices for them to simply print out the arguments passed into them.
 
 	function messageHandler(m) {console.log(m);} 
@@ -65,10 +65,10 @@ Our channel name in this case is `dogechat`. When we receive a message we simply
 	
 <!--We set our `state` to our `publicKey`.-->
 
-Now we can use PubNub's presence features to see the public keys of other users subscribed to the `dogechat` channel.
+Now we can use PubNub's presence features to see the public keys of other users subscribed to the `babel` channel.
 
 	pubnub.here_now({
-		channel : dogechat,
+		channel : babel,
 		state : true,
 		callback : function(m) {console.log(m)}
 	});
@@ -82,7 +82,7 @@ Now we can use PubNub's presence features to see the public keys of other users 
 	]
 	}
 
-#### 3. `dogechat.js`
+#### 3. `babel.js`
 
-`dogechat.js` builds on top of `dogekeyexchange.js` and provides encrypted self-destructing messages. 
+`babel.js` builds on top of `dogekeyexchange.js` and provides encrypted self-destructing messages. 
 

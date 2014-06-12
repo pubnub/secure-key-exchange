@@ -4,17 +4,18 @@
 <html>
 <head>
     <title>Babel</title>
-    <link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+<link href="http://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Cabin" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./css/styles.css">
     <link rel="stylesheet" type="text/css" href="https://rawgit.com/elrumordelaluz/csshake/master/csshake.min.css">
 </head>
 
 <!-- 
-░░░░░░░░░▄░░░░░░░░░░░░░░▄ so doge
+░░░░░░░░░▄░░░░░░░░░░░░░░▄ 
 ░░░░░░░░▌▒█░░░░░░░░░░░▄▀▒▌
 ░░░░░░░░▌▒▒█░░░░░░░░▄▀▒▒▒▐
-░░░░░░░▐▄▀▒▒▀▀▀▀▄▄▄▀▒▒▒▒▒▐ much meme
+░░░░░░░▐▄▀▒▒▀▀▀▀▄▄▄▀▒▒▒▒▒▐
 ░░░░░▄▄▀▒░▒▒▒▒▒▒▒▒▒█▒▒▄█▒▐
 ░░░▄▀▒▒▒░░░▒▒▒░░░▒▒▒▀██▀▒▌
 ░░▐▒▒▒▄▄▒▒▒▒░░░▒▒▒▒▒▒▒▀▄▒▒▌
@@ -36,8 +37,8 @@
     <header>
         <div id="links">
             <a href="#" class="selected">Home</a>
-            <a href="/index.html">README.md</a>
-            <a href="/index.html">GitHub</a>
+            <a href="https://github.com/lw7360/babel/blob/gh-pages/README.md">README.md</a>
+            <a href="https://github.com/lw7360/babel">GitHub</a>
         </div>
         <br>
         <div id="title">
@@ -72,19 +73,29 @@
 
     <div class="container slate-blue">
         <div class="tutorial">
-            <h3>What is DogeChat?</h3>
-            DogeChat is an Open Source widget and API built with the PubNub Realtime network. With DogeChat's API you can exchange Public Keys and also send Encrypted Self-Destructing Messages.
+            <h3>What is Babel?</h3>
+            Babel is an Open Source widget and API built with the PubNub Realtime network, that let's you exchange 1024-bit RSA Public Keys and send Encrypted, Self-Destructing Messages.
         </div>
 
         <div class="tutorial">
-            <h3>How do I use DogeChat?</h3>
-            <h4>Public Key Exchange</h4>
-            If all you need to do is perform key-exchange between two web clients, you should use <code>dogekeyexchange.js</code>.
+            <h3>How do I use Babel?</h3>
+            First, import the necessary JS libraries. Babel requires PubNub, jQuqery, and Cryptico.
+
+            <pre class="code">&lt;script src="https://cdn.pubnub.com/pubnub.min.js"&gt;&lt;/script&gt;
+&lt;script src="http://code.jquery.com/jquery-2.1.1.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://rawgit.com/lw7360/babel/gh-pages/js/libs/cryptico.js"&gt;&lt;/script&gt;</pre>
+            
+            And initialize Babel with a username that other users will be able to identify you with.
+
+            <pre class="code">var babel = new babel('doge');</pre>
+
+        </div>
+
+        <div class="tutorial">
+            <h3>For Public Key Exchange</h3>
+            Babel uses 1024-bit RSA encryption to encrypt the messages it sends. However, if you would like, you could use these keys for other purposes. 
             <br>
-            Supply a username, application name, and public key when you initialize a DogeKeyExchange instance.
-            <pre class="code">
-var exchange = DogeKeyExchange("doge", "doge_chat", "much_public_key");</pre>
-            DogeKeyExchange has four publicly accessible methods.
+
             <pre class="code">
 listUsers: function() {
     // Returns a JS object with User Names as members and Public Keys as their values.
@@ -103,7 +114,10 @@ quit: function() {
     // Doesn't return anything. After quitting, other users can no longer get your Public Key.
 }
 </pre>
-            <h4>Self-Destructing Messages</h4>
+        </div>
+
+        <div class="tutorial">
+            <h3>For Encrypted, Self-Destructing Messages</h3>
             For key-exchange and self-destructing messages, you can use <code>dogechat.js</code>.
             <pre class="code">
 var doge = new dogechat("doge");
@@ -136,11 +150,15 @@ myKey: function() {
 
         <div class="tutorial">
             <h3>More Resources.</h3>
-            To learn more about DogeChat, check out the <a href="">README</a>.
+            To learn more about DogeChat, check out the <a href="https://github.com/lw7360/babel/blob/gh-pages/README.md">README</a>.
+            Or, you can look at the source directly on <a href="https://github.com/lw7360/babel">Github</a>.
+            <br>
+            For more stuff like this, take a look at the <a href="http://www.pubnub.com/blog/"> PubNub Blog</a>.
         </div>
 
+
         <div id="footer">
-            <img src="http://www.pubnub.com/static/images/structure/pubnub.png">
+            <a href="http://www.pubnub.com/"><img src="http://www.pubnub.com/static/images/structure/pubnub.png"></a>
         </div>
     </div>
 
@@ -149,10 +167,9 @@ myKey: function() {
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="./js/libs/cryptico.js"></script>
-    <script src="./js/dogex.js"></script>
-    <script src="./js/dogechat.js"></script>
-    <script src="./js/dogechat-ui.js"></script>
+    <script src="./js/babel.js"></script>
+    <script src="./js/babel-ui.js"></script>
     <script src="./js/explode.js"></script>
-    <a href="https://github.com/you"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png"></a>
+    <!-- <a href="https://github.com/lw7360/babel"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png"></a> -->
 </body>
 </html>

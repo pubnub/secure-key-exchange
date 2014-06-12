@@ -7,6 +7,12 @@ background-color:#483d8b;
 
 header h1 {
 font-size:70px;
+font-family: 'Lobster', Georgia, Times, serif;
+}
+
+body {
+    font-family: 'Cabin', Helvetica, Arial, sans-serif;
+    font-size: 16px;
 }
 
 strong {
@@ -223,7 +229,6 @@ background-color:#483d8b;
 
 #footer {
 height:70px;
-background-color:#483d8b;
 text-align:center;
 }
 
