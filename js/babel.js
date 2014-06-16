@@ -35,6 +35,7 @@ function babel(username) {
     };
 
     var presenceHandler = function (msg) {
+        console.log(msg);
         if (msg.timestamp > latestUpdate) {
             if (msg.action === "join" || msg.action === "state-change") {
                 if ("data" in msg) { // if the presence message contains data aka state, add this to our users object. 
@@ -102,7 +103,7 @@ function babel(username) {
             })
         },
         state: myUser, // Set our state to our user object that contains our username and public key.
-        heartbeat: 10
+        // heartbeat: 10
     });
 
     $(window).on("unload", function () { // Unsubscribe from the PubNub channel when the page is closed.
