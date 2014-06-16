@@ -1,4 +1,4 @@
-function dogechat(username) {
+function babel(username) {
     var AppName = "doge_chat"; // The name of our web app, which is also going to be the PubNub channel we subscribe to.
     var RSAkey = cryptico.generateRSAKey(1024); // Generating a RSA key with the Cryptico JS library.
     var publicKey = cryptico.publicKeyString(RSAkey); // Grabbing the public portion of the RSAkey we just generated.
@@ -8,6 +8,7 @@ function dogechat(username) {
     }; // Create a user object that contains our username and public key.
     var users = {}; // An object that contains all the users subscribed to the channel.
     var messages = {}; // An object that contains received messages.
+    var latestUpdate = 0; // The timestamp of the latest change in presence
 
     var messageHandler = function (msg) {
         // 'messageHandler' is called whenever a message is received.
@@ -29,32 +30,35 @@ function dogechat(username) {
                 messages[msg.sender].push(parsedMsg);
             }
             receiveMessage(parsedMsg);
+            deleteMessage(msg.sender, msg.msgID, msg.ttl);
         }
     };
 
     var presenceHandler = function (msg) {
-        if (msg.action === "join" || msg.action === "state-change") {
-            if ("data" in msg) { // if the presence message contains data aka state, add this to our users object. 
-                users[msg.data.username] = msg.data.publicKey;
-            } else { // otherwise, we have to call 'here_now' to get the state of the new subscriber to the channel.
+        if (msg.timestamp > latestUpdate) {
+            if (msg.action === "join" || msg.action === "state-change") {
+                if ("data" in msg) { // if the presence message contains data aka state, add this to our users object. 
+                    users[msg.data.username] = msg.data.publicKey;
+                } else { // otherwise, we have to call 'here_now' to get the state of the new subscriber to the channel.
+                    pubnub.here_now({
+                        channel: AppName,
+                        state: true,
+                        callback: herenowUpdate
+                    });
+                }
+                presenceChange();
+            } else if (msg.action === "timeout" || msg.action === "leave") {
+                // A user has left or timed out of doge_chat so we remove them from our users object.
+                delete users[msg.uuid];
+                presenceChange();
+            } else {
+                // Some other kind of presence event has happened. Might as well check the entire channel.
                 pubnub.here_now({
                     channel: AppName,
                     state: true,
                     callback: herenowUpdate,
                 });
             }
-            presenceChange();
-        } else if (msg.action === "timeout" || msg.action === "leave") {
-            // A user has left or timed out of doge_chat so we remove them from our users object.
-            delete users[msg.uuid];
-            presenceChange();
-        } else {
-            // Some other kind of presence event has happened. Might as well check the entire channel.
-            pubnub.here_now({
-                channel: AppName,
-                state: true,
-                callback: herenowUpdate,
-            });
         }
     };
 
@@ -70,8 +74,8 @@ function dogechat(username) {
         presenceChange();
     };
 
-    var receiveMessage;
-    var presenceChange;
+    var receiveMessage = function(){};
+    var presenceChange = function(){};
     // 'receiveMessage' and 'presenceChange' are called when a message intended for the user is received
     // and when someone connects to or leaves the PubNub channel. They are able to be changed
     // from outside the object with 'onRecieveMessage' and 'onPresence' respectively.
@@ -89,13 +93,7 @@ function dogechat(username) {
         callback: function (m) {
             messageHandler(m);
         },
-        presence: function (m) {
-            pubnub.here_now({
-                channel: AppName,
-                state: true,
-                callback: herenowUpdate
-            });
-        },
+        presence: presenceHandler,
         connect: function() {
             pubnub.here_now({
                 channel: AppName,
@@ -107,11 +105,25 @@ function dogechat(username) {
         heartbeat: 10
     });
 
-    $(window).on("unload", function () {
+    $(window).on("unload", function () { // Unsubscribe from the PubNub channel when the page is closed.
         pubnub.unsubscribe({
             channel: AppName
         });
     });
+
+    var deleteMessage = function (userName, msgID, TTL) {
+        // Delete a message from 'messages' object by the msgID and userName of the conversation, after TTL seconds
+        setTimeout(function() {
+            if (userName === msgID) {
+                for (var i = 0; i < messages[userName].length; i++) {
+                    if (messages[userName][i].msgID === msgID) {
+                        messages[userName].splice(i, 1);
+                        break;
+                    }
+                }
+            }
+        }, 1000*TTL);
+    };
 
     return {
         sendMessage: function (recipient, message, ttl) {
@@ -148,6 +160,7 @@ function dogechat(username) {
                                 messages[recipient].push(parsedMsg);
                             }
                             receiveMessage(parsedMsg);
+                            deleteMessage(recipient, msgID, ttl);
                         }
                     });
                 });
@@ -169,17 +182,6 @@ function dogechat(username) {
         returnMessages: function () {
             // Return all messages.
             return messages;
-        },
-        deleteMessage: function (userName, msgID) {
-            // Delete a message from 'messages' object by the msgID and userName of the conversation.
-            if (userName === msgID) {
-                for (var i = 0; i < messages[userName].length; i++) {
-                    if (messages[userName][i].msgID === msgID) {
-                        messages[userName].splice(i, 1);
-                        break;
-                    }
-                }
-            }
         },
         myKey: function () {
             // Return your RSAkey.

@@ -1,4 +1,4 @@
-// Cryptico.js (Slightly modified)
+// Cryptico.js (Slightly modified by Larry Wu)
 
 // Copyright (c) 2005  Tom Wu
 // All Rights Reserved.

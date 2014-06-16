@@ -1,7 +1,7 @@
-function dogechatUI(username) {
-    var doge  = new dogechat(username); // Initialize DogeChat
+function babelUI(username) {
+    var babe  = new babel(username); // Initialize babe
     var currentRecipient = null; // The current recipient 
-    var msgTimes = {}; // 
+    var msgTimes = {}; 
 
     var printUserNames = function(msg) {
         var noSpace = msg.replace(/ /g, '_');
@@ -31,9 +31,9 @@ function dogechatUI(username) {
         if (e.keyCode === 13) {
             var myMsg = cleanJS($("#myMessage").text());
             var ttl = $("#TTL").text();
-            if (currentRecipient != null && currentRecipient in doge.listUsers() && myMsg.length > 0 && ttl.length > 0) {
+            if (currentRecipient != null && currentRecipient in babe.listUsers() && myMsg.length > 0 && ttl.length > 0) {
                 $("#myMessage").text('');
-                doge.sendMessage(currentRecipient, myMsg, parseInt(ttl));
+                babe.sendMessage(currentRecipient, myMsg, parseInt(ttl));
             }
         }
     }
@@ -50,7 +50,7 @@ function dogechatUI(username) {
     }
 
     var presenceHandler = function(m) {
-        var userList = Object.keys(doge.listUsers()).sort();
+        var userList = Object.keys(babe.listUsers()).sort();
         var filval = $("#filter").text();
 
         updateUserList( userList.filter(function(m) {return m.indexOf(filval) > -1}));
@@ -78,7 +78,7 @@ function dogechatUI(username) {
                         };
                         window.setTimeout(destruction, 2000);
 
-                        doge.deleteMessage(currentRecipient, m.msgID);
+                        // babe.deleteMessage(currentRecipient, m.msgID);
                         delete msgTimes[m.msgID];
                         clearInterval(counter);
                         return;
@@ -105,7 +105,7 @@ function dogechatUI(username) {
 
     var loadMessages = function(m) {
         $("#messages").empty();
-        var messages = doge.returnMessages()[m];
+        var messages = babe.returnMessages()[m];
         if (messages !== undefined) {
             for (var i = 0; i < messages.length; i++) {
                 var msg = messages[i];
@@ -114,14 +114,18 @@ function dogechatUI(username) {
         }
     }
 
-    doge.onRecieveMessage(recievedMessage);
-    doge.onPresence(presenceHandler);
+    babe.onRecieveMessage(recievedMessage);
+    babe.onPresence(presenceHandler);
 }
 
-function dogechat_init() {
+var init = false;
+
+function babe_init() {
     var username = cleanHTML($('#username').text());
+    init = true;
     if (username.length > 0) {
-        doge_ui = new dogechatUI(username);
+        $("#messages").text('')
+        babe_ui = new babelUI(username);
         $("#login").html("You are logged in as <strong>" + username +"</strong>");
     }
 }
@@ -130,11 +134,17 @@ $(document).keypress(function (e) {
     if(e.which === 13) return false;
 });
 $("#username").bind("enterKey", function() {
-    dogechat_init();
+    babe_init();
 });
 $('#username').keyup(function(e){
     if(e.keyCode == 13) {$(this).trigger("enterKey");}
-});          
+});
+
+$("#myMessage").keypress(function(e) {
+    if (e.keyCode === 13 && init === false) {
+        $("#messages").html('&uarr; Pick a Username first!');
+    }
+});
 
 
 function cleanHTML(text) {

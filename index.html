@@ -79,34 +79,74 @@
 
         <div class="tutorial">
             <h3>How do I use Babel?</h3>
-            Babel uses PubNub, jQuery, and Cryptico, so before we start, let's import these 3 libraries.
+            To get started with Babel, we also have to import PubNub, jQuery, and Cryptico.
 
-            <pre class="code">&lt;script src="https://cdn.pubnub.com/pubnub.min.js"&gt;&lt;/script&gt;
+            <pre class="code">
+&lt;script src="https://cdn.pubnub.com/pubnub.min.js"&gt;&lt;/script&gt;
 &lt;script src="http://code.jquery.com/jquery-2.1.1.min.js"&gt;&lt;/script&gt;
-&lt;script src="https://rawgit.com/lw7360/babel/gh-pages/js/libs/cryptico.js"&gt;&lt;/script&gt;</pre>
+&lt;script src="https://rawgit.com/lw7360/babel/gh-pages/js/libs/cryptico.js"&gt;&lt;/script&gt;
+&lt;script src="https://rawgit.com/lw7360/babel/gh-pages/js/babel.js"&gt;&lt;/script&gt;</pre>
             
-            And initialize Babel with a username that other users will be able to identify you with.
+            Now you can initialize Babel with a username that other users will be able to identify you with.
 
             <pre class="code">var babel = new babel('doge');</pre>
 
         </div>
 
         <div class="tutorial">
-            <h3>For Public Key Exchange</h3>
+            <h3>Public Key Exchange</h3>
             Babel uses 1024-bit RSA encryption to encrypt the messages it sends. However, if you would like, you could use these keys for other purposes. 
             <br>
-
-            <pre class="code">
+            <code>listUsers();</code>
+            <blockquote>
+                <p>
+                Returns an object with all users and their public keys.
+                <br>
+                e.g. {"doge": "sHva10Fff4O7DqDiQtzcb7P6zhj8FuJssMgtD+U...ulRSg9xB1BJg85qyHtM+CzSPKycysBG0="} 
+                </p>
+            </blockquote>
+            <code>myKey();</code>
+            <blockquote>
+                Returns your <a href="https://github.com/wwwtyro/cryptico">Cryptico</a> RSAkey. 
+            </blockquote>
 
 </pre>
         </div>
 
         <div class="tutorial">
-            <h3>For Encrypted, Self-Destructing Messages</h3>
-            To send encrypted messages with Babel you can.
-            <pre class="code">
-
-</pre>
+            <h3>Encrypted, Self-Destructing Messages</h3>
+            Babel also has the ability to send encrypted self-destructing messages.
+            <br>
+            <code>sendMessage(recipient, message, ttl);</code>
+            <blockquote>
+                Sends <code>message</code> to <code>recipient</code>. The <code>recipient</code> will be unable to read the message after <code>ttl</code> seconds.
+            </blockquote>
+            <code>returnMessages();</code>
+            <blockquote>
+                Returns all messages in the following form. <br>
+                { <br>
+                "shibe": [ // The user you are talking with. <br>
+                {<br>
+                "msgID": "409bbc34-ce15-4f82-a37d-f995682b1943", // A unique string that identifies the message.<br>
+                plaintext: "Hi, shibe! It's Doge", // The text of the actual message. <br>
+                TTL: 5, // The number of seconds  <br>
+                sender: "doge", // The user who sent the message <br>
+                recipient: "shibe" // The user who received the message <br>
+                }
+                ]
+                }
+            </blockquote>
+            <code>onRecieveMessage(callback);</code>
+            <blockquote>
+                <code>callback</code> will be called whenever a message intended for you is received.
+                An argument of the same form as a single message returned from <code>returnMessages</code> will be passed to <code>callback</code>.
+            </blockquote>
+            <code>onPresence(callback);</code>
+            <blockquote>
+                <code>callback</code> will be called when a user joins or leaves babel. 
+                <br>
+                To see who left you can call <code>listUsers</code>.
+            </blockquote>
         </div>
 
         <div class="tutorial">
@@ -131,6 +171,5 @@
     <script src="./js/babel.js"></script>
     <script src="./js/babel-ui.js"></script>
     <script src="./js/explode.js"></script>
-    <!-- <a href="https://github.com/lw7360/babel"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://camo.githubusercontent.com/8b6b8ccc6da3aa5722903da7b58eb5ab1081adee/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f6c6566745f6f72616e67655f6666373630302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_left_orange_ff7600.png"></a> -->
 </body>
 </html>

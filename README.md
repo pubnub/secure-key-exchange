@@ -6,28 +6,34 @@ Use PubNub and Public-key cryptography to send encrypted self-destructing messag
 
 ### Live Demo
 
-Check out <http://temp.com> for a live demo. 
+Check out <http://larrywu.com/babel> for a live demo. 
 
 ### Walkthrough
 
 #### 1. First Steps
-babel is built on [PubNub](http://www.pubnub.com/), so first, let's include the PubNub JavaScript SDK.
+Babel is built with [PubNub](http://www.pubnub.com/), [jQuery](http://jquery.com/), and [Cryptico](http://wwwtyro.github.io/cryptico/). So first, let's include the all the necessary libraries.
 
-	<script src=http://cdn.pubnub.com/pubnub.min.js ></script>
+	<script src="http://cdn.pubnub.com/pubnub.min.js"></script>
+	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="https://rawgit.com/lw7360/babel/gh-pages/js/libs/cryptico.js"></scrip>
+	<script src="https://rawgit.com/lw7360/babel/gh-pages/js/babel.js"></script>
+
+#### 2. Public Key Exchange
+
+`babel.js` provides an easy to use way to exchange 1024-bit RSA Public-Keys between two JavaScript clients. 
+
+Just initialize `babel` with a username and call `listUsers()`.
+
+	var babel = new babel('doge');
 	
-The babel user interface also uses [jQuery](http://jquery.com/), [Bootstrap](http://getbootstrap.com/), [CSShake](http://elrumordelaluz.github.io/csshake/) and [Cryptico](http://wwwtyro.github.io/cryptico/). However, if you only want to do Public-Key exchange, you only need PubNub.
-
-#### 2. `dogekeyexchange.js`
-
-`dogekeyexchange.js` provides an easy to use way to exchange Public-Keys between two JavaScript clients. 
-
-
-
+	console.log(babel.listUsers());
+	// Prints out something like this:
+	// {
+	//		"doge": "gOHeQ49y6kT7QvD2wy8aQ0d105lnzheH7pCczGdSBIblYzjYzpzapacns/SnomwRDsTrrm1eTfxh5qJU2tCqYWVA5W3Zh9ChnojFYQ6WBSe+USxFf4/iNYCFwzVmkkehQv5EfIlCxr2o0LaaguHVtPCFb1MUxxPIZRCZFS0J4Os="
+	// }
 
 ##### Key Generation
-Now we can generate our 1024-bit RSA keys.
-	
-	
+First, we have to generate our 1024-bit RSA key. This step is pretty simple with the Cryptico JavaScript library.
 
 	var RSAkey = cryptico.generateRSAKey(1024);
 	var publicKey = cryptico.publicKeyString(RSAkey);
@@ -41,9 +47,9 @@ Then let's initialize our PubNub client.
 		ssl : true
 	});
 	
-`'demo'` should be replaced with your own PubNub `publish_key` and `subscribe_key`, which you can get with your free PubNub [account](http://www.pubnub.com/get-started/).
+`'demo'` can be replaced with your own PubNub `publish_key` and `subscribe_key`, which you can get with your free PubNub [account](http://www.pubnub.com/get-started/).
 
-`userName` should be some unique and identifiable string. By setting `ssl` to `true`, PubNub will be using TLS to transport our data.
+`userName` should be some unique string that other users will be able to identify you by. By setting `ssl` to `true`, PubNub will be using TLS while transport our data.
 
 ##### Key Sharing
 
@@ -53,17 +59,11 @@ Let's subscribe to a PubNub channel.
 
 	pubnub.subscribe({
 		channel : babel,
-		callback : function(m) {console.log(m);},
-		state : publicKey
+		callback : function(m) {},
+		state : {username : 'doge', publicKey : publicKey}
 	});
 	
-Our channel name in this case is `babel`. When we receive a message we simply print it out. Also, our `state` has been set to our `publicKey`.
-<!--`messageHandler` and `presenceHandler` are functions that we can modify later to change what happens on message and presence changes. For now, it suffices for them to simply print out the arguments passed into them.
-
-	function messageHandler(m) {console.log(m);} 
-	function presenceHandler(m) {console.log(m);}-->
-	
-<!--We set our `state` to our `publicKey`.-->
+Our channel name in this case is `babel`. `callback` has been set to do nothing, because for now we don't need to do anything when we receive a message. Our `state` has been set to an object containing our username and publicKey.
 
 Now we can use PubNub's presence features to see the public keys of other users subscribed to the `babel` channel.
 
@@ -73,16 +73,16 @@ Now we can use PubNub's presence features to see the public keys of other users 
 		callback : function(m) {console.log(m)}
 	});
 	
-`here_now` prints out a list of uuids along with their state.
+`here_now` prints out a list of uuids along with their state. Here's an example of what it might print out.
 
 	{
-	occupancy: 1,
-	uuids: [
-	    ‘Alice’ : {"Tknd+V5WrBOujZKHUCS2MYZKhwSUr6WhaMkCag4FW2jKhga6xiru6J2CbbCJmGO5cmDSwtBCiUxXG8xDTCk5QblFlEAzA3XUw4mjar+6+7lhmakcLHrialyFQtWfY47zhWhLy3rvSqlHjVLvDOVmewRjHWC9a5SzQq5/YRhw+7E="}
-	]
+		occupancy: 1,
+		uuids: [
+	    	‘doge’ : {"Tknd+V5WrBOujZKHUCS2MYZKhwSUr6Wha...SqlHjVLvDOVmewRjHWC9a5SzQq5/YRhw+7E="}
+		]
 	}
 
-#### 3. `babel.js`
+#### 3. Encrypted, Self-Destructing Messages
 
-`babel.js` builds on top of `dogekeyexchange.js` and provides encrypted self-destructing messages. 
+`babel.js` also has the capabilities to send encrypted  
 

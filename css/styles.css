@@ -1,260 +1,231 @@
 header {
-min-height:200px;
-width:100%;
-color:#FFF;
-background-color:#483d8b;
+    min-height:200px;
+    width:100%;
+    color:#FFF;
+    background-color:#483d8b;
 }
-
 header h1 {
-font-size:70px;
-font-family: 'Lobster', Georgia, Times, serif;
+    font-size:70px;
+    font-family:'Lobster', Georgia, Times, serif;
 }
-
 body {
-    font-family: 'Cabin', Helvetica, Arial, sans-serif;
+    font-family:'Cabin', Helvetica, Arial, sans-serif;
     font-size: 16px;
 }
-
 strong {
-font-weight:700;
-text-decoration:underline;
+    font-weight:700;
+    text-decoration:underline;
 }
-
 #title {
-padding-bottom:10px;
-text-align:center;
-margin:45px auto 0;
+    padding-bottom:10px;
+    text-align:center;
+    margin:45px auto 0;
 }
-
 #links {
-float:right;
-padding-top:15px;
-text-align:right;
-font-size:20px;
-display:inline-block;
-text-decoration:none;
-margin:0 25px;
+    float:right;
+    padding-top:15px;
+    text-align:right;
+    font-size:20px;
+    display:inline-block;
+    text-decoration:none;
+    margin:0 25px;
 }
-
 #links a {
-color:#FFF;
-margin-right:30px;
+    color:#FFF;
+    margin-right:30px;
 }
-
 #links a:hover {
-text-decoration:underline;
-color:#FFF;
+    text-decoration:underline;
+    color:#FFF;
 }
-
 #links a.selected {
-text-decoration:underline;
+    text-decoration:underline;
 }
-
 #dogechatwrap {
-width:100%;
-padding-top:10px;
-background-color:#F6B442;
-padding-bottom:40px;
+    width:100%;
+    padding-top:10px;
+    background-color:#F6B442;
+    padding-bottom:40px;
 }
-
 #dogechat {
-width:650px;
-height:475px;
-margin:0 auto;
+    width:650px;
+    height:475px;
+    margin:0 auto;
 }
-
 #dogeusers {
-height:475px;
-width:200px;
-background-color:#F65942;
-text-align:center;
-float:left;
--moz-border-radius:15px 0 0 15px;
-border-radius:15px 0 0 15px;
-color:#FFF;
-margin:15px 0 0 62px;
-padding:10px;
+    height:475px;
+    width:200px;
+    background-color:#F65942;
+    text-align:center;
+    float:left;
+    -moz-border-radius:15px 0 0 15px;
+    border-radius:15px 0 0 15px;
+    color:#FFF;
+    margin:15px 0 0 62px;
+    padding:10px;
 }
-
 #dogemessages {
-min-height:475px;
-width:325px;
-background-color:#F65942;
-text-align:center;
-float:left;
-overflow:auto;
--moz-border-radius:0 15px 15px 0;
-border-radius:0 15px 15px 0;
-margin:15px 0 0;
-padding:10px;
+    min-height:475px;
+    width:325px;
+    background-color:#F65942;
+    text-align:center;
+    float:left;
+    overflow:auto;
+    -moz-border-radius:0 15px 15px 0;
+    border-radius:0 15px 15px 0;
+    margin:15px 0 0;
+    padding:10px;
 }
-
 #login {
-color:#FFF;
-text-align:center;
-width:525px;
-min-height:50px;
-font-size:17px;
-background-color:#f65942;
-border-radius:10px;
-moz-border-radius:10px;
-margin:10px auto 0;
-padding:10px;
+    color:#FFF;
+    text-align:center;
+    width:525px;
+    min-height:50px;
+    font-size:17px;
+    background-color:#f65942;
+    border-radius:10px;
+    moz-border-radius:10px;
+    margin:10px auto 0;
+    padding:10px;
 }
-
 #question {
-float:left;
+    float:left;
 }
-
 #username {
-margin-left:10px;
-margin-top:2px;
-color:#FFF;
-height:25px;
-width:350px;
-background-color:#ac3e2e;
-border-radius:10px;
-moz-border-radius:10px;
-text-align:left;
-float:left;
-padding:0 5px;
+    margin-left:10px;
+    margin-top:2px;
+    color:#FFF;
+    height:25px;
+    width:350px;
+    background-color:#ac3e2e;
+    border-radius:10px;
+    moz-border-radius:10px;
+    text-align:left;
+    float:left;
+    padding:0 5px;
 }
-
 .user {
--moz-user-select:none;
--khtml-user-select:none;
--webkit-user-select:none;
--o-user-select:none;
-border-radius:10px;
-transition:all 1s ease;
-margin:2px;
+    -moz-user-select:none;
+    -khtml-user-select:none;
+    -webkit-user-select:none;
+    -o-user-select:none;
+    border-radius:10px;
+    transition:all 1s ease;
+    margin:2px;
 }
-
 .user:hover {
-background-color:#F65942;
-cursor:pointer;
+    background-color:#F65942;
+    cursor:pointer;
 }
-
 #filter {
-background-color:#ac3e2e;
-color:#FFF;
-width:150px;
-border-radius:10px;
-moz-border-radius:10px;
-overflow:hidden;
-display:inline-block;
-font-size:16px;
-height:25px;
-margin:0;
+    background-color:#ac3e2e;
+    color:#FFF;
+    width:150px;
+    border-radius:10px;
+    moz-border-radius:10px;
+    overflow:hidden;
+    display:inline-block;
+    font-size:16px;
+    height:25px;
+    margin:0;
 }
-
 #messages {
-text-align:right;
-width:295px;
-height:400px;
-overflow:auto;
-background-color:#ac3e2e;
-border-radius:10px;
-moz-border-radius:10px;
-color:#FFF;
-margin:10px 0;
-padding:5px;
+    text-align:right;
+    width:295px;
+    height:400px;
+    overflow:auto;
+    background-color:#ac3e2e;
+    border-radius:10px;
+    moz-border-radius:10px;
+    color:#FFF;
+    margin:10px 0;
+    padding:5px;
 }
-
 #input {
-text-align:right;
-width:305px;
-height:30px;
-color:#FFF;
+    text-align:right;
+    width:305px;
+    height:30px;
+    color:#FFF;
 }
-
 #myMessage {
-color:#FFF;
-font-size:16px;
-height:25px;
-width:235px;
-background-color:#ac3e2e;
-position:relative;
-float:left;
-border-radius:10px;
-moz-border-radius:10px;
-overflow:auto;
-margin:0 10px 0 0;
-padding:0 10px;
+    color:#FFF;
+    font-size:16px;
+    height:25px;
+    width:235px;
+    background-color:#ac3e2e;
+    position:relative;
+    float:left;
+    border-radius:10px;
+    moz-border-radius:10px;
+    overflow:auto;
+    margin:0 10px 0 0;
+    padding:0 10px;
 }
-
 #TTL {
-font-size:16px;
-height:25px;
-width:50px;
-background-color:#ac3e2e;
-float:left;
-border-radius:10px;
-moz-border-radius:10px;
-text-align:right;
-overflow:auto;
-margin:0 auto;
-padding:0 5px;
+    font-size:16px;
+    height:25px;
+    width:50px;
+    background-color:#ac3e2e;
+    float:left;
+    border-radius:10px;
+    moz-border-radius:10px;
+    text-align:right;
+    overflow:auto;
+    margin:0 auto;
+    padding:0 5px;
 }
-
 #userList {
-overflow:auto;
-height:365px;
-margin-top:10px;
-margin-left:10px;
-background-color:#ac3e2e;
-border-radius:10px;
-moz-border-radius:10px;
-padding:2px;
+    overflow:auto;
+    height:365px;
+    margin-top:10px;
+    margin-left:10px;
+    background-color:#ac3e2e;
+    border-radius:10px;
+    moz-border-radius:10px;
+    padding:2px;
 }
-
 .container {
-width:100%;
-padding-top:10px;
-padding-bottom:20px;
+    width:100%;
+    padding-top:10px;
+    padding-bottom:20px;
 }
-
 .tutorial {
-width:900px;
-border-radius:10px;
-background-color:#f65942;
-color:#FFF;
-margin:30px auto;
-padding:1px 15px 7px;
+    width:900px;
+    border-radius:10px;
+    background-color:#f65942;
+    color:#FFF;
+    margin:30px auto;
+    padding:1px 15px 7px;
 }
-
 .slate-blue {
-background-color:#483d8b;
+    background-color:#483d8b;
 }
-
 #footer {
-height:70px;
-text-align:center;
+    height:70px;
+    text-align:center;
 }
-
 #footer img {
-height:60px;
+    height:60px;
 }
-
 .code {
-background-color:#ac3e2e;
-color:#FFF;
-margin-top:5px;
-border-width:0;
+    background-color:#ac3e2e;
+    color:#FFF;
+    margin-top:5px;
+    border-width:0;
 }
-
 .tutorial h3 {
-background-color:#ac3e2e;
-border-radius:10px;
-font-weight:700;
-padding:5px;
+    background-color:#ac3e2e;
+    border-radius:10px;
+    font-weight:700;
+    padding:5px;
 }
-
 a {
-color:silver;
+    color:#ac3e2e;
 }
-
 a :hover {
-text-decoration:underline;
-color:silver;
+    text-decoration:underline;
+    color:silver;
+}
+blockquote {
+    font-size: 17px;
 }
