@@ -1,5 +1,5 @@
-function babel(username) {
-    var AppName = "doge_chat"; // The name of our web app, which is also going to be the PubNub channel we subscribe to.
+function Babel(username) {
+    var AppName = "babel"; // The name of our web app, which is also going to be the PubNub channel we subscribe to.
     var RSAkey = cryptico.generateRSAKey(1024); // Generating a RSA key with the Cryptico JS library.
     var publicKey = cryptico.publicKeyString(RSAkey); // Grabbing the public portion of the RSAkey we just generated.
     var myUser = {
@@ -35,7 +35,6 @@ function babel(username) {
     };
 
     var presenceHandler = function (msg) {
-        console.log(msg);
         if (msg.timestamp > latestUpdate) {
             if (msg.action === "join" || msg.action === "state-change") {
                 if ("data" in msg) { // if the presence message contains data aka state, add this to our users object. 
@@ -79,7 +78,7 @@ function babel(username) {
     var presenceChange = function(){};
     // 'receiveMessage' and 'presenceChange' are called when a message intended for the user is received
     // and when someone connects to or leaves the PubNub channel. They are able to be changed
-    // from outside the object with 'onRecieveMessage' and 'onPresence' respectively.
+    // from outside the object with 'onMessage' and 'onPresence' respectively.
 
 
     var pubnub = PUBNUB.init({
@@ -106,19 +105,13 @@ function babel(username) {
         // heartbeat: 10
     });
 
-    $(window).on("unload", function () { // Unsubscribe from the PubNub channel when the page is closed.
-        pubnub.unsubscribe({
-            channel: AppName
-        });
-    });
-
-    var deleteMessage = function (userName, msgID, TTL) {
-        // Delete a message from 'messages' object by the msgID and userName of the conversation, after TTL seconds
+    var deleteMessage = function (username, msgID, TTL) {
+        // Delete a message from 'messages' object by the msgID and username of the conversation, after TTL seconds
         setTimeout(function() {
-            if (userName === msgID) {
-                for (var i = 0; i < messages[userName].length; i++) {
-                    if (messages[userName][i].msgID === msgID) {
-                        messages[userName].splice(i, 1);
+            if (username === msgID) {
+                for (var i = 0; i < messages[username].length; i++) {
+                    if (messages[username][i].msgID === msgID) {
+                        messages[username].splice(i, 1);
                         break;
                     }
                 }
@@ -167,13 +160,13 @@ function babel(username) {
                 });
             }
         },
-        onRecieveMessage: function (callback) {
+        onMessage: function (callback) {
             // callback = function that is called on a received message destined for you
-            // Received messages have the form message: message: {msgID : msg.msgID, plaintext : plaintext, TTL : msg.ttl, sender : msg.sender, recipient : msg.recipient};
+            // Messages have the form {msgID: "487f703e-3189-4f66-87a1-62cb0ffb52fd", plaintext: "very example message", TTL: 5, sender: "doge", recipient: "shibe"};
             receiveMessage = callback;
         },
         onPresence: function (callback) {
-            // callback = function that is called when a user has joined/left/timedout of the chat
+            // callback = function that is called when a user has joined/left/timed out of babel.
             presenceChange = callback;
         },
         listUsers: function () {
@@ -182,11 +175,18 @@ function babel(username) {
         },
         returnMessages: function () {
             // Return all messages.
+            console.log(messages);
             return messages;
         },
         myKey: function () {
             // Return your RSAkey.
             return RSAkey;
         },
+        quit: function () {
+            // Quit Babel. Other users will be unable to retrieve your public key or send messages to you.
+            pubnub.unsubscribe({
+                channel: AppName
+            });
+        }
     };
 }

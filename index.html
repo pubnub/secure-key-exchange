@@ -74,23 +74,23 @@
     <div class="container slate-blue">
         <div class="tutorial">
             <h3>What is Babel?</h3>
-            Babel is an Open Source widget and API built with the PubNub Realtime network, that let's you exchange 1024-bit RSA Public Keys and send Encrypted, Self-Destructing Messages.
+            Babel is an open source chat widget and API built with the PubNub Global Realtime Network. Babel let's you send Self-Destructing Messages, and also helps facilitate public key exchange. Check out the source on <a href="https://github.com/lw7360/babel">Github</a>.
         </div>
 
         <div class="tutorial">
             <h3>How do I use Babel?</h3>
-            To get started with Babel, we also have to import PubNub, jQuery, and Cryptico.
+            To get started with Babel, we have to import the necessary libraries.
 
             <pre class="code">
 &lt;script src="https://cdn.pubnub.com/pubnub.min.js"&gt;&lt;/script&gt;
-&lt;script src="http://code.jquery.com/jquery-2.1.1.min.js"&gt;&lt;/script&gt;
-&lt;script src="https://rawgit.com/lw7360/babel/gh-pages/js/libs/cryptico.js"&gt;&lt;/script&gt;
-&lt;script src="https://rawgit.com/lw7360/babel/gh-pages/js/babel.js"&gt;&lt;/script&gt;</pre>
-            
-            Now you can initialize Babel with a username that other users will be able to identify you with.
 
-            <pre class="code">var babel = new babel('doge');</pre>
+&lt;!-- Download from https://github.com/lw7360/babel --&gt;
+&lt;script src="./cryptico.js"&gt;&lt;/script&gt; 
+&lt;script src="./babel.js"&gt;&lt;/script&gt;
 
+&lt;script&gt;
+var babel = new Babel('doge'); // Initialize Babel with a username
+&lt;/script&gt;</pre>
         </div>
 
         <div class="tutorial">
@@ -164,7 +164,7 @@
     </div>
 
 
-    <script src="http://cdn.pubnub.com/pubnub-3.6.4.min.js"></script>
+    <script src="http://cdn.pubnub.com/pubnub.min.js"></script>
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
     <script src="./js/libs/cryptico.js"></script>

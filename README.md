@@ -1,8 +1,8 @@
 # Babel
 
-## Asymmetric-Key Exchange and Self-Destructing Messages with PubNub
+## Key Exchange and Self-Destructing Messages with PubNub
 
-Use PubNub and Public-key cryptography to send encrypted self-destructing messages.
+Babel is an open source chat widget and API built with the PubNub Global Realtime Network. Babel let's you send Self-Destructing Messages, and also helps facilitate public key exchange.
 
 ### Live Demo
 
@@ -11,13 +11,14 @@ Check out <http://larrywu.com/babel> for a live demo.
 ### Walkthrough
 
 #### 1. First Steps
-Babel is built with [PubNub](http://www.pubnub.com/), [jQuery](http://jquery.com/), and [Cryptico](http://wwwtyro.github.io/cryptico/). So first, let's include the all the necessary libraries.
+Babel is built with [PubNub](http://www.pubnub.com/) and [Cryptico](http://wwwtyro.github.io/cryptico/). So first, let's include the all the necessary libraries.
 
 	<script src="http://cdn.pubnub.com/pubnub.min.js"></script>
-	<script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<script src="https://rawgit.com/lw7360/babel/gh-pages/js/libs/cryptico.js"></scrip>
-	<script src="https://rawgit.com/lw7360/babel/gh-pages/js/babel.js"></script>
-
+	
+	<!-- Download from https://github.com/lw7360/babel -->
+	<script src="./cryptico.js"></script> 
+	<script src="./babel.js"></script>
+	
 #### 2. Public Key Exchange
 
 `babel.js` provides an easy to use way to exchange 1024-bit RSA Public-Keys between two JavaScript clients. 

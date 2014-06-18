@@ -1,7 +1,12 @@
-function babelUI(username) {
-    var babe  = new babel(username); // Initialize babe
+function BabelUI(username) {
+    var babel  = new Babel(username); // Initialize babel
     var currentRecipient = null; // The current recipient 
     var msgTimes = {}; 
+
+    $(window).on("unload", function () { // Unsubscribe from the PubNub channel when the page is closed.
+        babel.quit();
+    });
+
 
     var printUserNames = function(msg) {
         var noSpace = msg.replace(/ /g, '_');
@@ -31,9 +36,9 @@ function babelUI(username) {
         if (e.keyCode === 13) {
             var myMsg = cleanJS($("#myMessage").text());
             var ttl = $("#TTL").text();
-            if (currentRecipient != null && currentRecipient in babe.listUsers() && myMsg.length > 0 && ttl.length > 0) {
+            if (currentRecipient != null && currentRecipient in babel.listUsers() && myMsg.length > 0 && ttl.length > 0) {
                 $("#myMessage").text('');
-                babe.sendMessage(currentRecipient, myMsg, parseInt(ttl));
+                babel.sendMessage(currentRecipient, myMsg, parseInt(ttl));
             }
         }
     }
@@ -49,8 +54,8 @@ function babelUI(username) {
         $("#" + currentRecipient).css("background-color", "#F65942");
     }
 
-    var presenceHandler = function(m) {
-        var userList = Object.keys(babe.listUsers()).sort();
+    var presenceHandler = function() {
+        var userList = Object.keys(babel.listUsers()).sort();
         var filval = $("#filter").text();
 
         updateUserList( userList.filter(function(m) {return m.indexOf(filval) > -1}));
@@ -78,7 +83,7 @@ function babelUI(username) {
                         };
                         window.setTimeout(destruction, 2000);
 
-                        // babe.deleteMessage(currentRecipient, m.msgID);
+                        // babel.deleteMessage(currentRecipient, m.msgID);
                         delete msgTimes[m.msgID];
                         clearInterval(counter);
                         return;
@@ -105,7 +110,7 @@ function babelUI(username) {
 
     var loadMessages = function(m) {
         $("#messages").empty();
-        var messages = babe.returnMessages()[m];
+        var messages = babel.returnMessages()[m];
         if (messages !== undefined) {
             for (var i = 0; i < messages.length; i++) {
                 var msg = messages[i];
@@ -114,18 +119,18 @@ function babelUI(username) {
         }
     }
 
-    babe.onRecieveMessage(recievedMessage);
-    babe.onPresence(presenceHandler);
+    babel.onMessage(recievedMessage);
+    babel.onPresence(presenceHandler);
 }
 
 var init = false;
 
-function babe_init() {
+function babel_init() {
     var username = cleanHTML($('#username').text());
     init = true;
     if (username.length > 0) {
         $("#messages").text('')
-        babe_ui = new babelUI(username);
+        babel_ui = new BabelUI(username);
         $("#login").html("You are logged in as <strong>" + username +"</strong>");
     }
 }
@@ -134,7 +139,7 @@ $(document).keypress(function (e) {
     if(e.which === 13) return false;
 });
 $("#username").bind("enterKey", function() {
-    babe_init();
+    babel_init();
 });
 $('#username').keyup(function(e){
     if(e.keyCode == 13) {$(this).trigger("enterKey");}
