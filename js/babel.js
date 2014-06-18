@@ -94,13 +94,13 @@ function Babel(username) {
             messageHandler(m);
         },
         presence: presenceHandler,
-        connect: function() {
-            pubnub.here_now({
-                channel: AppName,
-                state: true,
-                callback: herenowUpdate
-            })
-        },
+        // connect: function() {
+        //     pubnub.here_now({
+        //         channel: AppName,
+        //         state: true,
+        //         callback: herenowUpdate
+        //     })
+        // },
         state: myUser, // Set our state to our user object that contains our username and public key.
         // heartbeat: 10
     });
