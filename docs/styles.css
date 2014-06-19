@@ -1,0 +1,35 @@
+header {
+    min-height:200px;
+    width:100%;
+    color:#FFF;
+    background-color:#483d8b;
+}
+#title {
+    /*padding-bottom:10px;*/
+    /*text-align:center;*/
+    /*margin:45px auto 0;*/
+}
+#links {
+    float:right;
+    padding-top:15px;
+    text-align:right;
+    font-size:20px;
+    display:inline-block;
+    text-decoration:none;
+    margin:0 25px;
+}
+#links a {
+    color:#FFF;
+    margin-right:30px;
+}
+#links a:hover {
+    text-decoration:underline;
+    color:#FFF;
+}
+#links a.selected {
+    text-decoration:underline;
+}
+
+.slate-blue {
+    background-color:#483d8b;
+}
