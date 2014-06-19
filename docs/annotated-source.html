@@ -32,11 +32,11 @@
 ░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▀▀
 -->
 
-<body class="annotated-source">
+<body>
     <header>
         <div id="links">
             <a href="http://larrywu.com/babel/">Home</a>
-            <a href="./docs/babel.html" class="selected">Annotated Source</a>
+            <a href="#" class="selected">Annotated Source</a>
             <a href="https://github.com/lw7360/babel">GitHub</a>
         </div>
         <br>
@@ -52,7 +52,7 @@
         var frame = document.getElementById(frameId);
         if (frame) {
           innerDoc = (frame.contentDocument) ? frame.contentDocument : frame.contentWindow.document;
-          $('#' + frameId).height(innerDoc.body.scrollHeight + 200);
+          $('#' + frameId).height(innerDoc.body.scrollHeight + 15);
         }
       } catch(err) {}
     }
@@ -60,9 +60,9 @@
   
 <iframe id="docco-iframe" src="./babel.html" style="" onload="setFrameHeight('docco-iframe')"></iframe> 
 
-<!--         <div id="footer">
+        <div id="footer">
             <a href="http://www.pubnub.com/"><img src="http://www.pubnub.com/static/images/structure/pubnub.png"></a>
-        </div> -->
+        </div>
 
 
     <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
