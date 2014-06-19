@@ -52,7 +52,7 @@
         var frame = document.getElementById(frameId);
         if (frame) {
           innerDoc = (frame.contentDocument) ? frame.contentDocument : frame.contentWindow.document;
-          $('#' + frameId).height(innerDoc.body.scrollHeight + 15);
+          $('#' + frameId).height(innerDoc.body.scrollHeight);
         }
       } catch(err) {}
     }
