@@ -203,9 +203,11 @@ strong {
 #footer {
     height:70px;
     text-align:center;
+    background-color: white;
 }
-#footer img {
-    height:60px;
+.footer {
+    text-align:center;
+    background-color: white;
 }
 .code {
     background-color:#ac3e2e;
@@ -234,4 +236,14 @@ iframe {
   min-height: 100%;
   border: none;
   overflow: hidden;
+}
+.pubnub-logo-footer {
+    background-image: url(https://rawgit.com/pubnub/pubnub-bitcoin/gh-pages/dist/media/pubnub.png);
+    background-repeat: no-repeat;
+    width: 98px;
+    height: 22px;
+    background-size: 98px 22px;
+    display: inline-block;
+    margin-bottom:-2px;
+    margin-right: 2px;
 }
