@@ -8,7 +8,7 @@ header h1 {
     font-size:70px;
     font-family:'Lobster', Georgia, Times, serif;
 }
-body {
+body, html {
     font-family:'Cabin', Helvetica, Arial, sans-serif;
     font-size: 16px;
 }
@@ -228,4 +228,13 @@ a :hover {
 }
 blockquote {
     font-size: 17px;
+}
+iframe {
+  width: 100%;
+  min-height: 100%;
+  border: none;
+  overflow: hidden;
+}
+.annotated-source {
+    overflow: auto;
 }

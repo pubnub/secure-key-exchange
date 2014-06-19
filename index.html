@@ -2,10 +2,11 @@
 <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
 <meta content="utf-8" http-equiv="encoding">
 <html>
+
 <head>
     <title>Babel</title>
-<link href="http://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
-<link href="http://fonts.googleapis.com/css?family=Cabin" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Cabin" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="./css/styles.css">
     <link rel="stylesheet" type="text/css" href="https://rawgit.com/elrumordelaluz/csshake/master/csshake.min.css">
@@ -37,23 +38,23 @@
     <header>
         <div id="links">
             <a href="#" class="selected">Home</a>
-            <a href="./docs/babel.html">Annotated Source</a>
+            <a href="./docs/annotated-source.html">Annotated Source</a>
             <a href="https://github.com/lw7360/babel">GitHub</a>
         </div>
         <br>
         <div id="title">
             <h1>Babel</h1>
             <h2>Encrypted, Self-Destructing Messages</h2>
-        </div> 
+        </div>
     </header>
-  
+
     <div id="dogechatwrap">
         <div id="login">
-            <div id="question">Pick a Username: </div>
+            <div id="question">Pick a Username:</div>
             <div contenteditable="true" id="username"></div>
         </div>
 
-      
+
         <div id="dogechat">
             <div id="dogeusers">
                 <h4>User List</h4>
@@ -95,22 +96,21 @@ var babel = new Babel('doge'); // Initialize Babel with a username
 
         <div class="tutorial">
             <h3>Public Key Exchange</h3>
-            Babel uses 1024-bit RSA encryption to encrypt the messages it sends. However, if you would like, you could use these keys for other purposes. 
+            Babel uses 1024-bit RSA encryption to encrypt the messages it sends. However, if you would like, you could use these keys for other purposes.
             <br>
             <code>listUsers();</code>
             <blockquote>
                 <p>
-                Returns an object with all users and their public keys.
-                <br>
-                e.g. {"doge": "sHva10Fff4O7DqDiQtzcb7P6zhj8FuJssMgtD+U...ulRSg9xB1BJg85qyHtM+CzSPKycysBG0="} 
+                    Returns an object with all users and their public keys.
+                    <br>e.g. {"doge": "sHva10Fff4O7DqDiQtzcb7P6zhj8FuJssMgtD+U...ulRSg9xB1BJg85qyHtM+CzSPKycysBG0="}
                 </p>
             </blockquote>
             <code>myKey();</code>
             <blockquote>
-                Returns your <a href="https://github.com/wwwtyro/cryptico">Cryptico</a> RSAkey. 
+                Returns your <a href="https://github.com/wwwtyro/cryptico">Cryptico</a> RSAkey.
             </blockquote>
 
-</pre>
+            </pre>
         </div>
 
         <div class="tutorial">
@@ -123,43 +123,39 @@ var babel = new Babel('doge'); // Initialize Babel with a username
             </blockquote>
             <code>returnMessages();</code>
             <blockquote>
-                Returns all messages in the following form. <br>
-                { <br>
-                "shibe": [ // The user you are talking with. <br>
-                {<br>
-                "msgID": "409bbc34-ce15-4f82-a37d-f995682b1943", // A unique string that identifies the message.<br>
-                plaintext: "Hi, shibe! It's Doge", // The text of the actual message. <br>
-                TTL: 5, // The number of seconds  <br>
-                sender: "doge", // The user who sent the message <br>
-                recipient: "shibe" // The user who received the message <br>
-                }
-                ]
-                }
+                Returns all messages in the following form.
+                <br>{
+                <br>"shibe": [ // The user you are talking with.
+                <br>{
+                <br>"msgID": "409bbc34-ce15-4f82-a37d-f995682b1943", // A unique string that identifies the message.
+                <br>plaintext: "Hi, shibe! It's Doge", // The text of the actual message.
+                <br>TTL: 5, // The number of seconds
+                <br>sender: "doge", // The user who sent the message
+                <br>recipient: "shibe" // The user who received the message
+                <br>} ] }
             </blockquote>
             <code>onRecieveMessage(callback);</code>
             <blockquote>
-                <code>callback</code> will be called whenever a message intended for you is received.
-                An argument of the same form as a single message returned from <code>returnMessages</code> will be passed to <code>callback</code>.
+                <code>callback</code> will be called whenever a message intended for you is received. An argument of the same form as a single message returned from <code>returnMessages</code> will be passed to <code>callback</code>.
             </blockquote>
             <code>onPresence(callback);</code>
             <blockquote>
-                <code>callback</code> will be called when a user joins or leaves babel. 
-                <br>
-                To see who left you can call <code>listUsers</code>.
+                <code>callback</code> will be called when a user joins or leaves babel.
+                <br>To see who left you can call <code>listUsers</code>.
             </blockquote>
         </div>
 
         <div class="tutorial">
             <h3>More Resources.</h3>
-            To learn more about DogeChat, check out the <a href="https://github.com/lw7360/babel/blob/gh-pages/README.md">README</a>.
-            Or, you can look at the source directly on <a href="https://github.com/lw7360/babel">Github</a>.
-            <br>
-            For more stuff like this, take a look at the <a href="http://www.pubnub.com/blog/"> PubNub Blog</a>.
+            To learn more about DogeChat, check out the <a href="https://github.com/lw7360/babel/blob/gh-pages/README.md">README</a>. Or, you can look at the source directly on <a href="https://github.com/lw7360/babel">Github</a>.
+            <br>For more stuff like this, take a look at the <a href="http://www.pubnub.com/blog/"> PubNub Blog</a>.
         </div>
 
 
         <div id="footer">
-            <a href="http://www.pubnub.com/"><img src="http://www.pubnub.com/static/images/structure/pubnub.png"></a>
+            <a href="http://www.pubnub.com/">
+                <img src="http://www.pubnub.com/static/images/structure/pubnub.png">
+            </a>
         </div>
     </div>
 
@@ -172,4 +168,5 @@ var babel = new Babel('doge'); // Initialize Babel with a username
     <script src="./js/babel-ui.js"></script>
     <script src="./js/explode.js"></script>
 </body>
+
 </html>
