@@ -6,6 +6,7 @@ Babel is an open source chat widget and API built with the PubNub Global Realtim
 
 *  [Live Demo](http://larrywu.com/babel)
 *  [Annotated Source](http://larrywu.com/babel/docs/annotated-source)
+
 <!--Insert blog posts here as they are posted.-->
 
 ------
