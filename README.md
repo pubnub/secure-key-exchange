@@ -4,9 +4,9 @@
 
 Babel is an open source chat widget and API built with the PubNub Global Realtime Network. Babel let's you send Self-Destructing Messages, and also helps facilitate public key exchange.
 
-*  [Live Demo](http://larrywu.com/babel)
-*  [Annotated Source](http://larrywu.com/babel/docs/annotated-source)
-
+###  [Live Demo](http://larrywu.com/babel)
+<!--*  [Annotated Source](http://larrywu.com/babel/docs/annotated-source)
+-->
 <!--Insert blog posts here as they are posted.-->
 
 ------
