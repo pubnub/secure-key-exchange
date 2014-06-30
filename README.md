@@ -4,7 +4,7 @@
 
 Babel is an open source chat widget and API built with the PubNub Global Realtime Network. Babel let's you send Self-Destructing Messages, and also helps facilitate public key exchange.
 
-###  [Live Demo](http://larrywu.com/babel)
+###  [Live Demo](http://pubnub.github.io/secure-key-exchange/)
 <!--*  [Annotated Source](http://larrywu.com/babel/docs/annotated-source)
 -->
 <!--Insert blog posts here as they are posted.-->
@@ -12,7 +12,7 @@ Babel is an open source chat widget and API built with the PubNub Global Realtim
 ------
 ## Source Walkthrough
 
-###Checkout the [annotated source](http://larrywu.com/babel/docs/annotated-source).
+###Check out the [annotated source](http://pubnub.github.io/secure-key-exchange/docs/annotated-source).
 
 ------
 
@@ -74,7 +74,7 @@ Now we can use PubNub's presence features to see the public keys of other users 
 ## API Walkthrough
 
 ### 1. First Steps
-Babel is built with [PubNub](http://www.pubnub.com/) and [Cryptico](http://wwwtyro.github.io/cryptico/). So first, let's include the all the necessary libraries.
+Babel uses both [PubNub](http://www.pubnub.com/) and [Cryptico](http://wwwtyro.github.io/cryptico/). So first, let's include the all the necessary libraries.
 
 	<script src="http://cdn.pubnub.com/pubnub.min.js"></script>
 	
