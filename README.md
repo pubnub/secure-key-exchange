@@ -2,7 +2,7 @@
 
 ## Key Exchange and Self-Destructing Messages with PubNub
 
-Babel is an open source chat widget and API built with the PubNub Global Realtime Network. Babel let's you send Self-Destructing Messages, and also helps facilitate public key exchange.
+Babel is an open source chat widget and API built with the PubNub Global Realtime Network. With Babel you can exchange 1024-bit RSA Public Keys, and send Encrypted, Self-Destructing Messages.
 
 ###  [Live Demo](http://pubnub.github.io/secure-key-exchange/)
 <!--*  [Annotated Source](http://larrywu.com/babel/docs/annotated-source)
@@ -74,7 +74,7 @@ Now we can use PubNub's presence features to see the public keys of other users 
 ## API Walkthrough
 
 ### 1. First Steps
-Babel uses both [PubNub](http://www.pubnub.com/) and [Cryptico](http://wwwtyro.github.io/cryptico/). So first, let's include the all the necessary libraries.
+Babel uses both [PubNub](http://www.pubnub.com/) and [Cryptico](http://wwwtyro.github.io/cryptico/). So first, let's include the all the necessary libraries. We can then instantiate a Babel object by calling `Babel` with a username string.
 
 	<script src="http://cdn.pubnub.com/pubnub.min.js"></script>
 	
@@ -83,7 +83,7 @@ Babel uses both [PubNub](http://www.pubnub.com/) and [Cryptico](http://wwwtyro.g
 	<script src="./babel.js"></script>
 	
 	<script> 
-	    var doge = new babel('doge'); // Initialize Babel with a username
+	    var doge = new Babel('doge'); // Initialize Babel with a username
 	</script>
 	
 ### 2. Public Key Exchange
@@ -91,19 +91,21 @@ Babel uses both [PubNub](http://www.pubnub.com/) and [Cryptico](http://wwwtyro.g
 `listUsers()` returns an object with all currently connected users' usernames and their public keys.
 	
 	console.log(doge.listUsers());
-	// {doge: "olpbSlUEca0VVVqcs9ciUZyPplkM1FnlcYfSVA4rDDOnbWipWLNvd/zC+VDNDTOS376R5mpsxkw+/CFyDGiBxJKJSUWiXuibHJOc/3rVgChn/lyXobDfx5jHRpbSQ0/ARuiZyGBNEFqoYLVENNIkqx9lVtUZDYLUWhnjaNrEK4E="}
+	// {username: publicKey}
+	// {doge: "olpbSlUEca0VVVqcs9ciUZyP...NNIkqx9lVtUZDYLUWhnjaNrEK4E="}
 	
-`myKey()` returns your Cryptico RSA key. 
+`myKey()` returns your [Cryptico](https://github.com/wwwtyro/cryptico) RSA key. 
 
 ### 3. Encrypted Self-Destructing Messages
 
-`sendMessage(recipient, message, ttl)` encrypts `message` with `recipient`'s public key, and sends the encrypted message to `recipient`. The message will be accessable through `returnMessages` for you and the `recipient` for `ttl` seconds.
+`sendMessage(recipient, message, ttl)` encrypts `message` with `recipient`'s public key, and sends the encrypted message to `recipient`. The message will be accessible through the `returnMessages` method for both you and the `recipient` for `ttl` seconds.
 
 	doge.sendMessage('shibe', 'Very greetings shibe. Much Excited!', 5);
-	// This will send a message to 'shibe', with the message 'Very greetings shibe. Much Excited!'. 
-	// both you and `shibe` will only be able to view this message for 5 seconds.
+	// This will send a message to 'shibe', with the message 
+	// 'Very greetings shibe. Much Excited!'. 
+	// Both you and `shibe` will only be able to view this message for 5 seconds.
 	
-`returnMessages()` returns all the messages you've sent or received that haven't timed out yet.
+`returnMessages()` returns all the messages you've sent or received that have yet to time out.
 
 	console.log(doge.returnMessages());
 	// {
@@ -124,11 +126,17 @@ Babel uses both [PubNub](http://www.pubnub.com/) and [Cryptico](http://wwwtyro.g
     var	messageHandler = function(msg) {console.log(msg);};
 	doge.onMessage(messageHandler);
 	
-	// Let's say that now 'shibe' has responded to our earlier message by sending a message of his own.
+	// 'shibe' responds to our earlier message and sends us a message of his own.
 	// messageHandler would be called and would print the following.
-	// {msgID: "d8fd0f29-81cf-4c35-8aef-59b2c664628f", plaintext: "Much hello doge!  Very cannot wait.", TTL: 5, sender: "shibe", recipient: "doge"}
+	// {
+	//     msgID: "d8fd0f29-81cf-4c35-8aef-59b2c664628f", 
+	//     plaintext: "Much hello doge!  Very cannot wait.", 
+	//     TTL: 5, 
+	//     sender: "shibe", 
+	//     recipient: "doge"
+	// }
 	// msgID is a unique string that can be used to identify the message.
 
-`onPresence(callback)` does the samething for presence events, i.e. users joining/leaving/timeing out of the channel.
+`onPresence(callback)` does the same thing for presence events, i.e. users joining/leaving/timing out of the channel.
 
 `quit()` causes you to leave the channel. Other users will no longer be able to retrieve your public key or send messages to you.
