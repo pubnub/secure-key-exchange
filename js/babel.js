@@ -3,7 +3,7 @@
 // self-destructing messages and also helps facilitate public key exchange. 
 //
 // You can check out the demo right [here](http://pubnub.github.io/secure-key-exchange/), 
-// or view the source on [Github](https://github.com/pubnub/secure-key-exchange).
+// or view the source on [GitHub](https://github.com/pubnub/secure-key-exchange).
 
 // Setup
 // ---
