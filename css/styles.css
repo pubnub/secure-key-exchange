@@ -222,11 +222,9 @@ strong {
     padding:5px;
 }
 a {
-    color:#ac3e2e;
-}
-a :hover {
+    color: #cccccc;
     text-decoration:underline;
-    color:silver;
+
 }
 blockquote {
     font-size: 17px;
