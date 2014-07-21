@@ -36,7 +36,10 @@ function BabelUI(username) {
         if (e.keyCode === 13) {
             var myMsg = cleanJS($("#myMessage").text());
             var ttl = $("#TTL").text();
-            if (currentRecipient != null && currentRecipient in babel.listUsers() && myMsg.length > 0 && ttl.length > 0) {
+            if (currentRecipient != null && currentRecipient in babel.listUsers()) {
+                $("#messages").html('&#8592; Select a User to Message first!');
+            }
+            else if (myMsg.length > 0 && ttl.length > 0) {
                 $("#myMessage").text('');
                 babel.sendMessage(currentRecipient, myMsg, parseInt(ttl));
             }
