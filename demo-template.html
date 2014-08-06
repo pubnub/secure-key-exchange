@@ -11,19 +11,40 @@
     <meta name="description" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.">
     <meta name="google-site-verification" content="t5d3Yna_Cvup118ZfZmBN0Om5UroaqXI3q1ewUD7pzA">
     <meta name="viewport" content="width=device-width, target-densityDpi=device-dpi, initial-scale=1.0, maximum-scale=1.5;">
-    
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">    
 
     
      <script type="text/javascript" src="./demo-template_files/pd.js"></script><script type="text/javascript" async="" src="./demo-template_files/inpage_linkid.js" id="undefined"></script><script type="text/javascript" async="" src="./demo-template_files/bf.min.js"></script><script type="text/javascript" async="" src="./demo-template_files/ga.js"></script><script src="./demo-template_files/30715011.js"></script><style type="text/css"></style>
 
     <link rel="icon" type="image/png" href="http://www.pubnub.com/static/images/structure/favicon.png">
-
+    <link rel="stylesheet" type="text/css" href="https://rawgit.com/elrumordelaluz/csshake/master/csshake.min.css">
     <link rel="stylesheet" href="http://www.pubnub.com/static/css/styles.css?ts=1407176722">
     <!--[if lt IE 9]> <script src="/static/js/ie.js?ts=1407176722"></script> <![endif]-->
 
     
         
   </head>
+<!-- 
+░░░░░░░░░▄░░░░░░░░░░░░░░▄ 
+░░░░░░░░▌▒█░░░░░░░░░░░▄▀▒▌
+░░░░░░░░▌▒▒█░░░░░░░░▄▀▒▒▒▐
+░░░░░░░▐▄▀▒▒▀▀▀▀▄▄▄▀▒▒▒▒▒▐
+░░░░░▄▄▀▒░▒▒▒▒▒▒▒▒▒█▒▒▄█▒▐
+░░░▄▀▒▒▒░░░▒▒▒░░░▒▒▒▀██▀▒▌
+░░▐▒▒▒▄▄▒▒▒▒░░░▒▒▒▒▒▒▒▀▄▒▒▌
+░░▌░░▌█▀▒▒▒▒▒▄▀█▄▒▒▒▒▒▒▒█▒▐
+░▐░░░▒▒▒▒▒▒▒▒▌██▀▒▒░░░▒▒▒▀▄▌
+░▌░▒▄██▄▒▒▒▒▒▒▒▒▒░░░░░░▒▒▒▒▌
+▌▒▀▐▄█▄█▌▄░▀▒▒░░░░░░░░░░▒▒▒▐
+▐▒▒▐▀▐▀▒░▄▄▒▄▒▒▒▒▒▒░▒░▒░▒▒▒▒▌
+▐▒▒▒▀▀▄▄▒▒▒▄▒▒▒▒▒▒▒▒░▒░▒░▒▒▐ 
+░▌▒▒▒▒▒▒▀▀▀▒▒▒▒▒▒░▒░▒░▒░▒▒▒▌
+░▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▒░▒░▒▒▄▒▒▐
+░░▀▄▒▒▒▒▒▒▒▒▒▒▒░▒░▒░▒▄▒▒▒▒▌
+░░░░▀▄▒▒▒▒▒▒▒▒▒▒▄▄▄▀▒▒▒▒▄▀
+░░░░░░▀▄▄▄▄▄▄▀▀▀▒▒▒▒▒▄▄▀
+░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▀▀
+-->
 
   <body id="app" class="satemplate">
 
@@ -221,7 +242,27 @@
 
 <!-- Place working demo in here -->
 <div class="section padding-extra white" id="demo"></div>
+    <div id="dogechatwrap">
+        <div id="login">
+            <div id="question">Pick a Username:</div>
+            <div contenteditable="true" id="username"></div>
+        </div>
 
+        <div id="dogechat">
+            <div id="dogeusers">
+                <h4>User List</h4>
+                <div id="filter" contenteditable="true"></div>
+                <div id="userList"></div>
+            </div>
+
+            <div id="dogemessages">
+                <div id="messages"></div>
+                <div id="input">
+                    <div contenteditable="true" id="myMessage"></div>
+                    <div contenteditable="true" id="TTL">5</div>
+                </div>
+            </div>
+        </div>
 <!-- Place this anchor where ever the tutorial starts, often this will be directly about the first code block -->
 <a name="tutorial"></a>
 
@@ -288,8 +329,8 @@
         <code>myKey()</code>  Returns your <a href="https://github.com/wwwtyro/cryptico">Cryptico</a> RSAkey.
       </p>
     </div>
-    <div class="col-sm-3">
-      <img src="./demo-template_files/cloud-red.png" alt="Realtime Red cloud">
+    <div class="col-sm-3" style="font-size: 150px; text-align: center;">
+        <i class="fa fa-key"></i>
     </div>
   </div>
 </div>
@@ -300,13 +341,15 @@
     <div class="col-sm-9 pull-right">
       <div class="headline h3">Sending and Receiving Messages</div>
       <p>
-
-
-      For a more detailed overview of the Babel API, check out the <a href="https://github.com/pubnub/secure-key-exchange/blob/gh-pages/README.md" >README</a> on GitHub.
+      <code>sendMessage(recipient, message, ttl)</code> Sends <code>message</code> to <code>recipient</code>. After <code>ttl</code> seconds the message will self-destruct.
+      <br>
+      <code>returnMessages()</code> Returns all messages that haven't self-destructed yet.
+      <br>
+      <code>onRecieveMessage(callback)</code> <code>callback</code> will be called whenever you receive a message.
       </p>
     </div>
-    <div class="col-sm-3 pull-left">
-      <img src="./demo-template_files/cloud-red.png" alt="Realtime Red cloud">
+    <div id="bomb" style="font-size: 150px; text-align: center;" class="col-sm-3 pull-left">
+        <i class="fa fa-file-text"></i>
     </div>
   </div>
 </div>
@@ -315,13 +358,17 @@
 <div class="section white padding-extra">
   <div class="container">
     <div class="col-sm-9">
-      <div class="headline h3">Headline</div>
+      <div class="headline h3">Presence</div>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      <code>listUsers()</code> Returns a list of all users currently connected to Babel.
+      <br>
+      <code>onPresence(callback)</code> <code>callback</code> will be called whenever a user joins or leaves.
+      <br>
+      For a more detailed overview of the Babel API, check out the <a href="https://github.com/pubnub/secure-key-exchange/blob/gh-pages/README.md" >README</a> on GitHub.
       </p>
     </div>
-    <div class="col-sm-3">
-      <img src="./demo-template_files/cloud-red.png" alt="Realtime Red cloud">
+    <div class="col-sm-3" style="font-size: 150px; text-align: center;">
+        <i class="fa fa-users"></i> 
     </div>
   </div>
 </div>
@@ -339,6 +386,8 @@ Add as many as youd like
         <li><a href="">Blog 1</a></li>
         <li><a href="">Blog 2</a></li>
         <li><a href="">Blog 3</a></li>
+        <li><a href="">Blog 4</a></li>
+        <li><a href="">Blog 5</a></li>
       </ul>
     </div>
     <div class="col-sm-6">
@@ -346,6 +395,7 @@ Add as many as youd like
       <ul>
         <li><a href="http://www.pubnub.com/how-it-works/data-streams/" target="_blank">Data Streams</a></li>
         <li><a href="http://www.pubnub.com/how-it-works/presence/" target="_blank">Presence</a></li>
+        <li><a href="http://www.pubnub.com/how-it-works/security/" target="_blank">Security</a></li>
       </ul>
     </div>
   </div>
@@ -476,8 +526,12 @@ Add as many as youd like
     <script src="./demo-template_files/pubnub.min.js"></script>
     <script src="./demo-template_files/demo.js"></script>
     <script src="./demo-template_files/main.js"></script>
-
-    
+    <script src="http://cdn.pubnub.com/pubnub.min.js"></script>
+    <script src="http://larrywu.com/babel/js/libs/cryptico.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://larrywu.com/babel/js/babel-ui.js"></script>
+    <script src="http://larrywu.com/babel/js/babel.js"></script>
+    <script src="http://larrywu.com/babel/js/explode.js"></script> 
     
 
     <div id="loading">
