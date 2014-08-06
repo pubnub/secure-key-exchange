@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<meta content="utf-8" http-equiv="encoding">
+<html>
+
+<head>
+    <title>Babel</title>
+    <link href="http://fonts.googleapis.com/css?family=Lobster" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Cabin" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    <link rel="stylesheet" type="text/css" href="https://rawgit.com/elrumordelaluz/csshake/master/csshake.min.css">
+</head>
+
+<!-- 
+░░░░░░░░░▄░░░░░░░░░░░░░░▄ 
+░░░░░░░░▌▒█░░░░░░░░░░░▄▀▒▌
+░░░░░░░░▌▒▒█░░░░░░░░▄▀▒▒▒▐
+░░░░░░░▐▄▀▒▒▀▀▀▀▄▄▄▀▒▒▒▒▒▐
+░░░░░▄▄▀▒░▒▒▒▒▒▒▒▒▒█▒▒▄█▒▐
+░░░▄▀▒▒▒░░░▒▒▒░░░▒▒▒▀██▀▒▌
+░░▐▒▒▒▄▄▒▒▒▒░░░▒▒▒▒▒▒▒▀▄▒▒▌
+░░▌░░▌█▀▒▒▒▒▒▄▀█▄▒▒▒▒▒▒▒█▒▐
+░▐░░░▒▒▒▒▒▒▒▒▌██▀▒▒░░░▒▒▒▀▄▌
+░▌░▒▄██▄▒▒▒▒▒▒▒▒▒░░░░░░▒▒▒▒▌
+▌▒▀▐▄█▄█▌▄░▀▒▒░░░░░░░░░░▒▒▒▐
+▐▒▒▐▀▐▀▒░▄▄▒▄▒▒▒▒▒▒░▒░▒░▒▒▒▒▌
+▐▒▒▒▀▀▄▄▒▒▒▄▒▒▒▒▒▒▒▒░▒░▒░▒▒▐ 
+░▌▒▒▒▒▒▒▀▀▀▒▒▒▒▒▒░▒░▒░▒░▒▒▒▌
+░▐▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▒░▒░▒▒▄▒▒▐
+░░▀▄▒▒▒▒▒▒▒▒▒▒▒░▒░▒░▒▄▒▒▒▒▌
+░░░░▀▄▒▒▒▒▒▒▒▒▒▒▄▄▄▀▒▒▒▒▄▀
+░░░░░░▀▄▄▄▄▄▄▀▀▀▒▒▒▒▒▄▄▀
+░░░░░░░░░▒▒▒▒▒▒▒▒▒▒▀▀
+-->
+
+<body style="background:transparent">
+    <div>
+        <div id="login" style="">
+            <div id="question">Pick a Username:</div>
+            <div contenteditable="true" id="username"></div>
+        </div>
+
+
+        <div id="dogechat">
+            <div id="dogeusers">
+                <h4>User List</h4>
+                <div id="filter" contenteditable="true"></div>
+                <div id="userList"></div>
+            </div>
+
+            <div id="dogemessages">
+                <div id="messages"></div>
+                <div id="input">
+                    <div contenteditable="true" id="myMessage"></div>
+                    <div contenteditable="true" id="TTL">5</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="http://cdn.pubnub.com/pubnub.min.js"></script>
+    <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="./js/libs/cryptico.js"></script>
+    <script src="./js/babel.js"></script>
+    <script src="./js/babel-ui.js"></script>
+    <script src="./js/explode.js"></script>
+    <script>
+    piAId='29622';
+    piCId='23596';
+    (function(){
+    function async_load(){
+    var s=document.createElement('script');s.type='text/javascript';
+    s.src=('https:'==document.location.protocol?'https://pi':'http://cdn')
+    +'.pardot.com/pd.js';
+    var c=document.getElementsByTagName('script')[0];
+    c.parentNode.insertBefore(s,c);}
+    if(window.attachEvent){window.attachEvent('onload',async_load);}
+    else{window.addEventListener('load',async_load,false);}})();
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create','UA-16927549-1');
+    ga('send','pageview');
+    </script>
+</body>
+
+</html>
