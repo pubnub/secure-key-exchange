@@ -24,7 +24,7 @@ function Babel(username) {
     };
 
     // A mapping of all currently connected users' usernames to their public keys.
-    var users = {};
+    var users = {demo: publicKey};
     
     // A mapping of usernames and the messages they've sent.
     // (Messages you've sent are mapped by the the username of the reciever)
@@ -120,7 +120,7 @@ function Babel(username) {
     // It does a complete update of our `users` object and then
     // calls `presenceChange()`.
     var herenowUpdate = function (msg) {
-        users = {};
+        users = {demo : publicKey};
         for (var i = 0; i < msg.uuids.length; i++) {
             if ("state" in msg.uuids[i]) {
                 users[msg.uuids[i].state.username] = msg.uuids[i].state.publicKey;
