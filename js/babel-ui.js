@@ -60,7 +60,9 @@ function BabelUI(username) {
     var presenceHandler = function() {
         var userList = Object.keys(babel.listUsers()).sort();
         var filval = $("#filter").text();
-
+        if (filval === "Filter by Name") {
+            filval = "";
+        }
         updateUserList( userList.filter(function(m) {return m.indexOf(filval) > -1}));
     }
 
