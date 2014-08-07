@@ -151,7 +151,7 @@ strong {
     color:#FFF;
     font-size:16px;
     height:25px;
-    width:193px;
+    width:200px;
     background-color:#ac3e2e;
     position:relative;
     float:left;
@@ -175,7 +175,7 @@ strong {
     padding:0 5px;
 }
 #ttlEx {
-   font-size: 14px; 
+   font-size: 12px; 
 }
 #userList {
     overflow:auto;
