@@ -54,6 +54,7 @@
                 <div id="input">
                     <div contenteditable="true" id="myMessage"></div>
                     <div contenteditable="true" id="TTL">5</div>
+                    <div id="ttlEx">Seconds to Deletion</div>
                 </div>
             </div>
         </div>
@@ -66,6 +67,52 @@
     <script src="./js/babel.js"></script>
     <script src="./js/babel-ui.js"></script>
     <script src="./js/explode.js"></script>
+    <script>
+        var greyFilter = '<span style="color: LightGray;">Filter by Name</span>';
+        var greyMessage = '<span style="color: LightGray;">Enter a Message</span>';
+        var changePlaceHolder = function($input, value) {
+            if ($input.html() === value) {
+                $input.html('');
+            }
+        }
+        $("#filter").html(greyFilter);
+        $("#myMessage").html(greyMessage);
+
+        $("#filter").keyup(function() {
+            changePlaceHolder($("#filter"), greyFilter);
+        });
+        $("#filter").click(function() {
+            changePlaceHolder($("#filter"), greyFilter);
+        });
+        $("#filter").bind('input', function() {
+            changePlaceHolder($("#filter"), greyFilter);
+        });
+        $("#filter").change(function() {
+            changePlaceHolder($("#filter"), greyFilter);
+        });
+        $("#filter").blur(function() {
+            if ($(this).text().length === 0) {
+                $("#filter").html(greyFilter);
+            }
+        });
+        $("#myMessage").keyup(function() {
+            changePlaceHolder($("#myMessage"), greyMessage);
+        });
+        $("#myMessage").click(function() {
+            changePlaceHolder($("#myMessage"), greyMessage);
+        });
+        $("#myMessage").bind('input', function() {
+            changePlaceHolder($("#myMessage"), greyMessage);
+        });
+        $("#myMessage").change(function() {
+            changePlaceHolder($("#myMessage"), greyMessage);
+        });
+        $("#myMessage").blur(function() {
+            if ($(this).text().length === 0) {
+                $("#myMessage").html(greyMessage);
+            }
+        });
+    </script>
     <script>
     piAId='29622';
     piCId='23596';
