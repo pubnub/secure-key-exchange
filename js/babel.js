@@ -134,14 +134,12 @@ function Babel(username) {
     // If you *received* the message, `username` is the username of the sender.)
     var deleteMessage = function (username, msgID, TTL) {
         setTimeout(function() {
-            if (username === msgID) {
                 for (var i = 0; i < messages[username].length; i++) {
                     if (messages[username][i].msgID === msgID) {
                         messages[username].splice(i, 1);
                         break;
                     }
                 }
-            }
         }, 1000*TTL);
     };
 
