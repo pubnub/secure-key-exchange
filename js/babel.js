@@ -133,14 +133,18 @@ function Babel(username) {
     // (If you *sent* the message, `username` is the username of the recipient.
     // If you *received* the message, `username` is the username of the sender.)
     var deleteMessage = function (username, msgID, TTL) {
-        setTimeout(function() {
+        var z = setInterval(function() {
             for (var i = 0; i < messages[username].length; i++) {
                 if (messages[username][i].msgID === msgID) {
-                    messages[username].splice(i, 1);
-                    break;
+                    if (messages[username][i].TTL === 0) {
+                        messages[username].splice(i, 1);
+                        clearInterval(z);
+                        break;
+                    }
+                    messages[username][i].TTL--;
                 }
             }
-        }, 1000*TTL);
+        }, 1000);
     };
 
     // babel public methods
