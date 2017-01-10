@@ -140,3 +140,15 @@ Babel uses both [PubNub](http://www.pubnub.com/) and [Cryptico](http://wwwtyro.g
 `onPresence(callback)` does the same thing for presence events, i.e. users joining/leaving/timing out of the channel.
 
 `quit()` causes you to leave the channel. Other users will no longer be able to retrieve your public key or send messages to you.
+
+
+
+## build instructions
+
+```
+npm install
+node build.js
+```
+This will create build/demo.html and support files.
+
+
