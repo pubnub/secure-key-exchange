@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/pubnub/secure-key-exchange#readme",
   "dependencies": {
-    "csshake": "^1.5.1"
+    "csshake": "^1.5.1",
+    "pubnub": "^4.3.3"
   }
 }
