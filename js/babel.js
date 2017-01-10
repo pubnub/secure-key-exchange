@@ -90,28 +90,30 @@ function Babel(username) {
         else if (msg.action === "timeout" || msg.action === "leave") {
             delete users[msg.uuid];
             presenceChange();
-        } 
+        }
     };
 
     // Starting up PubNub
     // ---
     // Initialize PubNub.
-    var pubnub = PUBNUB.init({
+    var pubnub = new PubNub({
         // You can replace `demo` with your own PubNub publish and subscribe keys.
-        publish_key: 'demo',
-        subscribe_key: 'demo',
-
+        publishKey: 'demo',
+        subscribeKey: 'demo',
         uuid: username,
-        ssl: true,
+        ssl: true
     });
 
-    // Subscribe to our PubNub channel.
-    pubnub.subscribe({
-        channel: channel,
-        callback: messageHandler,
+    //add listener
+    pubnub.addListener({
+        message: messageHandler,
         presence: presenceHandler,
         // Set our state to our user object, which contains our username and public key.
-        state: myUser,
+        state: myUser
+    });
+    // Subscribe to our PubNub channel.
+    pubnub.subscribe({
+        channels: [channel]
     });
 
     // Babel Private Methods
@@ -158,34 +160,32 @@ function Babel(username) {
                 var plaintext = message;
                 var recipient_key = users[recipient];
                 message = cryptico.encrypt(message, recipient_key);
-
-                pubnub.uuid(function (msgID) {
-                    pubnub.publish({
-                        channel: channel,
-                        message: {
-                            recipient: recipient,
+                var msgID = PubNub.generateUUID();
+                pubnub.publish({
+                    channel: channel,
+                    message: {
+                        recipient: recipient,
+                        msgID: msgID,
+                        sender: username,
+                        message: message,
+                        ttl: ttl
+                    },
+                    callback: function () {
+                        parsedMsg = {
                             msgID: msgID,
+                            plaintext: plaintext,
+                            TTL: ttl,
                             sender: username,
-                            message: message,
-                            ttl: ttl
-                        },
-                        callback: function () {
-                            parsedMsg = {
-                                msgID: msgID,
-                                plaintext: plaintext,
-                                TTL: ttl,
-                                sender: username,
-                                recipient: recipient
-                            };
-                            if (messages[recipient] === undefined) {
-                                messages[recipient] = [parsedMsg];
-                            } else {
-                                messages[recipient].push(parsedMsg);
-                            }
-                            receiveMessage(parsedMsg);
-                            deleteMessage(recipient, msgID, ttl);
+                            recipient: recipient
+                        };
+                        if (messages[recipient] === undefined) {
+                            messages[recipient] = [parsedMsg];
+                        } else {
+                            messages[recipient].push(parsedMsg);
                         }
-                    });
+                        receiveMessage(parsedMsg);
+                        deleteMessage(recipient, msgID, ttl);
+                    }
                 });
             }
         },

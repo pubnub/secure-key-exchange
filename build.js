@@ -13,7 +13,8 @@ Promise.all([
     copyFilesTo(["css","imgs",'js'],BUILD),
     //copyFilesTo(['js'],BUILD),
 ]).then(()=>{
-    copyFilesTo(["node_modules/csshake/dist/csshake.css"],paths.join(BUILD,'css'), {flatten:true})
+    copyFilesTo(["node_modules/csshake/dist/csshake.css"],paths.join(BUILD,'css'), {flatten:true});
+    copyFilesTo(["node_modules/pubnub/dist/web/pubnub.js"],paths.join(BUILD,'js'), {flatten:true});
 }).catch((e)=>{
     console.log("error",e);
 }).then(()=>{
