@@ -11,7 +11,7 @@ function Babel(username) {
     // The name of the PubNub channel we will be using.
     // Change this if you want to use a different channel.
     var channel = "babel";
-    
+
     // Generate an RSA key and grab the public key.
     var RSAkey = cryptico.generateRSAKey(1024);
     var publicKey = cryptico.publicKeyString(RSAkey);
