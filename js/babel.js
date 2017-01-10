@@ -43,7 +43,8 @@ function Babel(username) {
     // If the recipient of the message is this user, it will decrypt
     // and store the message inside the messages object,
     //  then call `receiveMessage` with the decrypted message.
-    var messageHandler = function (msg) {
+    var messageHandler = function (m) {
+        var msg = m.message;
         if (msg.recipient === username) {
             var plaintext = cryptico.decrypt(msg.message.cipher, RSAkey).plaintext;
             parsedMsg = {
@@ -69,7 +70,8 @@ function Babel(username) {
     // `presenceHandler` is called whenever a user leaves, joins, or
     // times out of Babel. After updating our `users` object, it calls
     // `presenceChange()`.
-    var presenceHandler = function (msg) {
+    var presenceHandler = function (m) {
+        var msg = m.message;
         // A user has joined Babel, so we add them to our users object.
         if (msg.action === "join" || msg.action === "state-change") {
             // If the presence message contains data aka *state*, add this to our users object. 
@@ -169,23 +171,22 @@ function Babel(username) {
                         sender: username,
                         message: message,
                         ttl: ttl
-                    },
-                    callback: function () {
-                        parsedMsg = {
-                            msgID: msgID,
-                            plaintext: plaintext,
-                            TTL: ttl,
-                            sender: username,
-                            recipient: recipient
-                        };
-                        if (messages[recipient] === undefined) {
-                            messages[recipient] = [parsedMsg];
-                        } else {
-                            messages[recipient].push(parsedMsg);
-                        }
-                        receiveMessage(parsedMsg);
-                        deleteMessage(recipient, msgID, ttl);
                     }
+                },function () {
+                    parsedMsg = {
+                        msgID: msgID,
+                        plaintext: plaintext,
+                        TTL: ttl,
+                        sender: username,
+                        recipient: recipient
+                    };
+                    if (messages[recipient] === undefined) {
+                        messages[recipient] = [parsedMsg];
+                    } else {
+                        messages[recipient].push(parsedMsg);
+                    }
+                    receiveMessage(parsedMsg);
+                    deleteMessage(recipient, msgID, ttl);
                 });
             }
         },
